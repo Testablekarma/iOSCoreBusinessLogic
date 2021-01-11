@@ -6,7 +6,7 @@ open class NetworkDataFetcher<T: Decodable>: DataFetcher<T, NetworkHttpService.E
     private let httpService: HttpService
     private lazy var errorTransformer = NetworkErrorTransformer()
 
-    init(httpService: HttpService) {
+    public init(httpService: HttpService) {
         self.httpService = httpService
     }
 

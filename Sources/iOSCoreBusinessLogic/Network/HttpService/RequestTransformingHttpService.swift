@@ -6,7 +6,7 @@ open class RequestTransformingHttpService: HttpService {
     private let httpService: HttpService
     private let urlRequestTransformer: URLRequestTransformer
 
-    init(httpService: HttpService, urlRequestTransformer: URLRequestTransformer) {
+    public init(httpService: HttpService, urlRequestTransformer: URLRequestTransformer) {
 
         self.httpService = httpService
         self.urlRequestTransformer = urlRequestTransformer

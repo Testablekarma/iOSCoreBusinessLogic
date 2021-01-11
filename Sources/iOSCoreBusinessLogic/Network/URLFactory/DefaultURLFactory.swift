@@ -4,7 +4,7 @@ open class DefaultURLFactory: URLFactory {
 
     private let hostname: String
     
-    init(hostname: String) {
+    public init(hostname: String) {
         self.hostname = hostname
     }
     
