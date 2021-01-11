@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class NetworkHttpService: HttpService {
+open class NetworkHttpService: HttpService {
 
     private let session: URLSession
 
@@ -9,7 +9,7 @@ class NetworkHttpService: HttpService {
         self.session = session
     }
 
-    func performRequest(_ request: URLRequest) -> AnyPublisher<Data, NetworkHttpService.Errors> {
+    public func performRequest(_ request: URLRequest) -> AnyPublisher<Data, NetworkHttpService.Errors> {
         session.dataTaskPublisher(for: request)
             .map { $0.data }
             .mapError { self.transformError(urlError: $0) }
@@ -19,7 +19,7 @@ class NetworkHttpService: HttpService {
 
 // MARK: - Handle response error.
 
-extension NetworkHttpService {
+public extension NetworkHttpService {
 
     private func transformError(urlError: URLError) -> Errors {
 
@@ -58,7 +58,7 @@ extension NetworkHttpService {
     }
 }
 
-extension NetworkHttpService {
+public extension NetworkHttpService {
 
     private struct StatusCodes {
         static let success = 200..<300

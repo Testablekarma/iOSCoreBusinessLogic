@@ -1,5 +1,5 @@
 import Foundation
 
-protocol URLRequestTransformer {
+public protocol URLRequestTransformer {
     func transform(urlRequest: URLRequest) throws -> URLRequest
 }

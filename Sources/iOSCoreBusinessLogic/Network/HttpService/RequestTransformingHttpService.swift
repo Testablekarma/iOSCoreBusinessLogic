@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class AuthenticatedHttpService: HttpService {
+open class RequestTransformingHttpService: HttpService {
 
     private let httpService: HttpService
     private let urlRequestTransformer: URLRequestTransformer
@@ -12,7 +12,7 @@ class AuthenticatedHttpService: HttpService {
         self.urlRequestTransformer = urlRequestTransformer
     }
 
-    func performRequest(_ request: URLRequest) -> AnyPublisher<Data, NetworkHttpService.Errors> {
+    public func performRequest(_ request: URLRequest) -> AnyPublisher<Data, NetworkHttpService.Errors> {
         let urlRequest = try! urlRequestTransformer.transform(urlRequest: request)
         return httpService.performRequest(urlRequest)
     }

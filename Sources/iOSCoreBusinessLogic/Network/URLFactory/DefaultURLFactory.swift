@@ -1,6 +1,6 @@
 import Foundation
 
-class DefaultURLFactory: URLFactory {
+open class DefaultURLFactory: URLFactory {
 
     private let hostname: String
     
@@ -8,7 +8,7 @@ class DefaultURLFactory: URLFactory {
         self.hostname = hostname
     }
     
-   func makeURL(appending path: String) -> URL {
+    public func makeURL(appending path: String) -> URL {
         guard let encodedPath = path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             fatalError("Can't encode path")
         }

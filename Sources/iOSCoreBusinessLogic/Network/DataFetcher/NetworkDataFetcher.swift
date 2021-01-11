@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class NetworkDataFetcher<T: Decodable>: DataFetcher<T, NetworkHttpService.Errors> {
+open class NetworkDataFetcher<T: Decodable>: DataFetcher<T, NetworkHttpService.Errors> {
 
     private let httpService: HttpService
     private lazy var errorTransformer = NetworkErrorTransformer()

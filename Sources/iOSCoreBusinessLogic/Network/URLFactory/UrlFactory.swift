@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol URLFactory {
+public protocol URLFactory {
     func makeURL(appending path: String) -> URL
 }
