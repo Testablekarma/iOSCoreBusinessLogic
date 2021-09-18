@@ -1,8 +1,8 @@
-//
-//  File.swift
-//  
-//
-//  Created by Mark Webb on 13/08/2021.
-//
-
 import Foundation
+import Combine
+
+open class DataPoster<T: Decodable, E: Encodable, U: Error> {
+    func post(request: URLRequest, body: E) -> AnyPublisher<T, U> {
+        fatalError("No logic should be implemented.")
+    }
+}

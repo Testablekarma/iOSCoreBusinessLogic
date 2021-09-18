@@ -75,5 +75,6 @@ public extension NetworkHttpService {
         case doesNotExist
         case unknown
         case decodingError
+        case encodingError
     }
 }
