@@ -15,6 +15,16 @@ open class NetworkHttpService: HttpService {
             .mapError { self.transformError(urlError: $0) }
             .eraseToAnyPublisher()
     }
+    
+    public func performAsyncRequest(_ request: URLRequest) async throws -> Result<Data, NetworkHttpService.Errors> {
+        let (data, response) = try await session.data(for: request)
+                                
+        if let error = errorForResponse(response, data) {
+            return .failure(error)
+        } else {
+            return .success(data)
+        }
+    }
 }
 
 // MARK: - Handle response error.
@@ -37,7 +47,7 @@ public extension NetworkHttpService {
         }
     }
 
-    private func errorForResponse(_ response: URLResponse?, _ data: Data?) -> Error? {
+    private func errorForResponse(_ response: URLResponse?, _ data: Data?) -> Errors? {
 
         guard let httpResponse = response as? HTTPURLResponse else {
             return Errors.emptyResponse
@@ -74,7 +84,7 @@ public extension NetworkHttpService {
         case noConnection
         case doesNotExist
         case unknown
-        case decodingError
+        case decodingError(message: String?)
         case encodingError
     }
 }
