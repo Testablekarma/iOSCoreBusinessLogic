@@ -22,7 +22,7 @@ open class NetworkDataFetcher<T: Decodable>: DataFetcher<T, NetworkHttpService.E
         
         Task {
             try await fetchAsync(request: request)
-        } as!
+        } as! T
     }
 }
 
