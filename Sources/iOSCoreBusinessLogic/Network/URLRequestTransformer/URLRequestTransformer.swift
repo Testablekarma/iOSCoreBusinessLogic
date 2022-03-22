@@ -9,7 +9,7 @@ open class PostingURLRequestTransformer<E: Encodable> {
     
     public init() {}
     
-    func transform(urlRequest: URLRequest, body: E) throws -> URLRequest {
+    public func transform(urlRequest: URLRequest, body: E) throws -> URLRequest {
         fatalError("This should be subclassed")
     }
 }
