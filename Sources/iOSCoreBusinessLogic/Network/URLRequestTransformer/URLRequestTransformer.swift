@@ -5,7 +5,7 @@ public protocol URLRequestTransformer {
 }
 
 // This has to be a class as protocols do not allow for generic values
-public class PostingURLRequestTransformer<E: Encodable> {
+open class PostingURLRequestTransformer<E: Encodable> {
     func transform(urlRequest: URLRequest, body: E) throws -> URLRequest {
         fatalError("This should be subclassed")
     }
