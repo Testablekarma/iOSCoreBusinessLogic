@@ -1,6 +1,6 @@
 import Foundation
 
-class JSONPostingURLRequestTransformer<E: Encodable>: PostingURLRequestTransformer<E> {
+public class JSONPostingURLRequestTransformer<E: Encodable>: PostingURLRequestTransformer<E> {
     
     override func transform(urlRequest: URLRequest, body: E) throws -> URLRequest {
         var request = urlRequest
