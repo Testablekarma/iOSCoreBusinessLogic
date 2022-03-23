@@ -25,7 +25,7 @@ open class NetworkDataPoster<T: Decodable, E: Encodable>: DataPoster<T, E, Netwo
         }
     }
     
-    public override func post(request: URLRequest, body: E) async throws -> Result<T, NetworkHttpService.Errors> {
+    public override func postAsync(request: URLRequest, body: E) async throws -> Result<T, NetworkHttpService.Errors> {
         let postRequest = try postingUrlRequestTransformer.transform(urlRequest: request, body: body)
         let result = try await postAsync(request: postRequest)
         
