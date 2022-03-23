@@ -6,7 +6,7 @@ open class DataPoster<T: Decodable, E: Encodable, U: Error> {
         fatalError("No logic should be implemented.")
     }
     
-    func post(request: URLRequest, body: E) throws -> T {
+    func post(request: URLRequest, body: E) async throws -> Result<T, U> {
         fatalError("No logic should be implemented.")
     }
 }
