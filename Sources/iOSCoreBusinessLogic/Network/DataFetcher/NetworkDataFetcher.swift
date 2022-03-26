@@ -18,16 +18,24 @@ open class NetworkDataFetcher<T: Decodable>: DataFetcher<T, NetworkHttpService.E
             .eraseToAnyPublisher()
     }
     
-    public override func fetch(request: URLRequest) throws -> T {
+    public override func fetchAsync(request: URLRequest) async throws -> Result<T, NetworkHttpService.Errors> {
+        let result = try await fetchA(request: request)
         
-        Task {
-            try await fetchAsync(request: request)
-        } as! T
+        switch result {
+        case let .success(object):
+            return .success(object)
+        case let .failure(error):
+            if let networkError = error as? NetworkHttpService.Errors {
+                return .failure(networkError)
+            } else {
+                throw error
+            }
+        }
     }
 }
 
 private extension NetworkDataFetcher {
-    func fetchAsync(request: URLRequest) async throws -> T {
+    func fetchA(request: URLRequest) async throws -> Result<T, Error> {
         let task = Task { () -> T in
             do {
                 let requestResult = try await httpService.performAsyncRequest(request)
@@ -44,6 +52,6 @@ private extension NetworkDataFetcher {
             }
         }
         
-        return try await task.value
+        return await task.result
     }
 }

@@ -6,7 +6,7 @@ open class DataFetcher<T: Decodable, U: Error> {
         fatalError("No logic should be implemented.")
     }
     
-    func fetch(request: URLRequest) throws -> T {
+    func fetchAsync(request: URLRequest) async throws -> Result<T, U> {
         fatalError("No logic should be implemented.")
     }
 }
